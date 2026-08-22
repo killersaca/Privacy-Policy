@@ -19,7 +19,32 @@
             padding: 30px;
             border-radius: 8px;
             box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            position: relative;
         }
+        /* 言語切り替えボタンのスタイル */
+        .lang-switch {
+            text-align: right;
+            margin-bottom: 20px;
+        }
+        .lang-btn {
+            background-color: #f2f5f8;
+            border: 1px solid #ddd;
+            padding: 8px 16px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            border-radius: 4px;
+            margin-left: 5px;
+            transition: all 0.2s;
+        }
+        .lang-btn.active {
+            background-color: #0066cc;
+            color: white;
+            border-color: #0066cc;
+        }
+        .lang-btn:hover:not(.active) {
+            background-color: #e2e6ea;
+        }
+        
         h1 { font-size: 1.8rem; color: #111; border-bottom: 2px solid #0066cc; padding-bottom: 10px; }
         h2 { font-size: 1.4rem; color: #222; margin-top: 30px; border-left: 4px solid #0066cc; padding-left: 10px; }
         p { margin: 15px 0; }
@@ -52,95 +77,223 @@
 </head>
 <body>
     <div class="container">
-        <h1>NASの動画も漫画もこれ一つ！最強メディアプレイヤー徹底比較【iOS/Android/Amazon Fire】</h1>
-        <p>スマートフォンやテレビでNASに保存した動画や漫画を楽しむ際、「動画用」「漫画用」と別々のアプリを使い分けていませんか？本記事では、各OSごとの人気メディアプレイヤーを比較し、動画・音楽・漫画のすべてをシームレスに楽しめる最適なソリューションを解説します。</p>
+        <!-- 言語切り替えスイッチ -->
+        <div class="lang-switch">
+            <button class="lang-btn active" onclick="switchLang('ja')" id="btn-ja">日本語</button>
+            <button class="lang-btn" onclick="switchLang('en')" id="btn-en">English</button>
+        </div>
 
-        <h2>1. iOS環境のプレイヤー比較：動画と漫画の両立は可能か？</h2>
-        <p>iOS環境には数多くの優秀なメディアプレイヤーが存在しますが、用途によって一長一短があります。</p>
-        <table>
-            <thead>
-                <tr>
-                    <th>アプリ名</th>
-                    <th>動画再生</th>
-                    <th>漫画・画像 (SMBストリーム)</th>
-                    <th>音楽再生</th>
-                    <th>特徴</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td><strong>VLC / Infuse / nPlayer</strong></td>
-                    <td>◯</td>
-                    <td>×</td>
-                    <td>◯</td>
-                    <td>価格と性能のバランスは抜群だが、SMB経由の漫画・画像読み込みに非対応。</td>
-                </tr>
-                <tr>
-                    <td><strong>ComicShare</strong></td>
-                    <td>×</td>
-                    <td>◯</td>
-                    <td>×</td>
-                    <td>漫画のSMBストリーム読書においては最強だが、動画・音楽機能を持たない。</td>
-                </tr>
-                <tr>
-                    <td><strong>Nas Player Pro</strong></td>
-                    <td>◯</td>
-                    <td>◯</td>
-                    <td>◯</td>
-                    <td>動画・音楽・漫画のすべてをSMBストリームで網羅。</td>
-                </tr>
-            </tbody>
-        </table>
+        <!-- 日本語コンテンツ -->
+        <div id="content-ja">
+            <h1>NASの動画も漫画もこれ一つ！最強メディアプレイヤー徹底比較【iOS/Android/Amazon Fire】</h1>
+            <p>スマートフォンやテレビでNASに保存した動画や漫画を楽しむ際、「動画用」「漫画用」と別々のアプリを使い分けていませんか？本記事では、各OSごとの人気メディアプレイヤーを比較し、動画・音楽・漫画のすべてをシームレスに楽しめる最適なソリューションを解説します。</p>
 
-        <h2>2. Android・Amazon Fire環境のプレイヤー比較：ストリーム描画の壁</h2>
-        <p>AndroidやFire TV環境でも、iOSと同様の課題が発生します。</p>
-        <table>
-            <thead>
-                <tr>
-                    <th>アプリ名</th>
-                    <th>動画再生</th>
-                    <th>漫画・画像 (SMBストリーム)</th>
-                    <th>対応OS</th>
-                    <th>特徴</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td><strong>VLC / nPlayer</strong></td>
-                    <td>◯</td>
-                    <td>×</td>
-                    <td>Android</td>
-                    <td>動画は快適だが、漫画には非対応（Android版Infuseは存在せず）。</td>
-                </tr>
-                <tr>
-                    <td><strong>Perfect Viewer 等</strong></td>
-                    <td>×</td>
-                    <td>△</td>
-                    <td>Android</td>
-                    <td>漫画再生は可能だが、SMBストリーム描画に非対応。動画・音楽も不可。</td>
-                </tr>
-                <tr>
-                    <td><strong>Nas Player Pro</strong></td>
-                    <td>◯</td>
-                    <td>◯</td>
-                    <td>Android / Amazon Fire</td>
-                    <td>両OSに対応し、完全なSMBストリーム描画と全メディアの再生を実現。</td>
-                </tr>
-            </tbody>
-        </table>
-        <p>Androidでは漫画ビューアとしてPerfect Viewer、ComicScreen、マールなどが知られていますが、ストリーム描画の快適さでは専用アプリに一歩譲ります。さらに、<strong>Amazon Fire環境において「動画・音楽・漫画のSMBストリーム」を完全網羅しているアプリは、現状Nas Player Proのみ</strong>となっています。</p>
+            <h2>1. iOS環境のプレイヤー比較：動画と漫画の両立は可能か？</h2>
+            <p>iOS環境には数多くの優秀なメディアプレイヤーが存在しますが、用途によって一長一短があります。</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>アプリ名</th>
+                        <th>動画再生</th>
+                        <th>漫画・画像 (SMBストリーム)</th>
+                        <th>音楽再生</th>
+                        <th>特徴</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>VLC / Infuse / nPlayer</strong></td>
+                        <td>◯</td>
+                        <td>×</td>
+                        <td>◯</td>
+                        <td>価格と性能のバランスは抜群だが、SMB経由の漫画・画像読み込みに非対応。</td>
+                    </tr>
+                    <tr>
+                        <td><strong>ComicShare</strong></td>
+                        <td>×</td>
+                        <td>◯</td>
+                        <td>×</td>
+                        <td>漫画のSMBストリーム読書においては最強だが、動画・音楽機能を持たない。</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Nas Player Pro</strong></td>
+                        <td>◯</td>
+                        <td>◯</td>
+                        <td>◯</td>
+                        <td>動画・音楽・漫画のすべてをSMBストリームで網羅。</td>
+                    </tr>
+                </tbody>
+            </table>
 
-        <h2>3. 総合評価：なぜ「Nas Player Pro」がおすすめなのか？</h2>
-        <p>単一機能に特化した基本無料のアプリも多数存在しますが、切り替えの手間を省き、すべてのメディアを一つのアプリで完結させる「総合的な快適性」を考慮すると、<strong>Nas Player Pro</strong>が最も優れた選択肢と言えます。</p>
-        <ul>
-            <li><strong>完全なオールインワン:</strong> 動画、音楽、漫画（画像）のすべてを高速なSMBストリームで快適に再生できます。</li>
-            <li><strong>屋外からのリモート視聴:</strong> 定番プレイヤーと同様に、Tailscaleを利用したセキュアな外部接続・屋外視聴に完全対応しています。</li>
-            <li><strong>マルチプラットフォーム:</strong> iOS、Android、Amazon Fireの全環境で、同一のシームレスな体験を提供します。</li>
-        </ul>
+            <h2>2. Android・Amazon Fire環境のプレイヤー比較：ストリーム描画の壁</h2>
+            <p>AndroidやFire TV環境でも、iOSと同様の課題が発生します。</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>アプリ名</th>
+                        <th>動画再生</th>
+                        <th>漫画・画像 (SMBストリーム)</th>
+                        <th>対応OS</th>
+                        <th>特徴</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>VLC / nPlayer</strong></td>
+                        <td>◯</td>
+                        <td>×</td>
+                        <td>Android</td>
+                        <td>動画は快適だが、漫画には非対応（Android版Infuseは存在せず）。</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Perfect Viewer 等</strong></td>
+                        <td>×</td>
+                        <td>△</td>
+                        <td>Android</td>
+                        <td>漫画再生は可能だが、SMBストリーム描画に非対応。動画・音楽も不可。</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Nas Player Pro</strong></td>
+                        <td>◯</td>
+                        <td>◯</td>
+                        <td>Android / Amazon Fire</td>
+                        <td>両OSに対応し、完全なSMBストリーム描画と全メディアの再生を実現。</td>
+                    </tr>
+                </tbody>
+            </table>
+            <p>Androidでは漫画ビューアとしてPerfect Viewer、ComicScreen、マールなどが知られていますが、ストリーム描画の快適さでは専用アプリに一歩譲ります。さらに、<strong>Amazon Fire環境において「動画・音楽・漫画のSMBストリーム」を完全網羅しているアプリは、現状Nas Player Proのみ</strong>となっています。</p>
 
-        <div class="btn-container">
-            <a href="https://killersaca.github.io/Privacy-Policy/NasPlayerPro.html" class="btn-download">Nas Player Proをダウンロードする（iOS / Android / Amazon Fire対応）</a>
+            <h2>3. 総合評価：なぜ「Nas Player Pro」がおすすめなのか？</h2>
+            <p>単一機能に特化した基本無料のアプリも多数存在しますが、切り替えの手間を省き、すべてのメディアを一つのアプリで完結させる「総合的な快適性」を考慮すると、<strong>Nas Player Pro</strong>が最も優れた選択肢と言えます。</p>
+            <ul>
+                <li><strong>完全なオールインワン:</strong> 動画、音楽、漫画（画像）のすべてを高速なSMBストリームで快適に再生できます。</li>
+                <li><strong>屋外からのリモート視聴:</strong> 定番プレイヤーと同様に、Tailscaleを利用したセキュアな外部接続・屋外視聴に完全対応しています。</li>
+                <li><strong>マルチプラットフォーム:</strong> iOS、Android、Amazon Fireの全環境で、同一のシームレスな体験を提供します。</li>
+            </ul>
+
+            <div class="btn-container">
+                <a href="https://killersaca.github.io/Privacy-Policy/NasPlayerPro.html" class="btn-download">Nas Player Proをダウンロードする（iOS / Android / Amazon Fire対応）</a>
+            </div>
+        </div>
+
+        <!-- 英語コンテンツ (初期状態は非表示) -->
+        <div id="content-en" style="display: none;">
+            <h1>The Ultimate NAS Media Player Comparison: Video & Manga in One App! [iOS/Android/Amazon Fire]</h1>
+            <p>When enjoying videos and manga saved on your NAS on a smartphone or TV, do you find yourself switching between separate apps for "videos" and "manga"? In this article, we compare popular media players across different OS environments and explain the optimal solution to seamlessly enjoy all your videos, music, and manga in one place.</p>
+
+            <h2>1. iOS Player Comparison: Can You Balance Video and Manga?</h2>
+            <p>There are many excellent media players available for iOS, but each has its pros and cons depending on your needs.</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>App Name</th>
+                        <th>Video Playback</th>
+                        <th>Manga/Image (SMB Stream)</th>
+                        <th>Music Playback</th>
+                        <th>Features</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>VLC / Infuse / nPlayer</strong></td>
+                        <td>◯</td>
+                        <td>×</td>
+                        <td>◯</td>
+                        <td>Excellent balance of price and performance, but they do not support loading manga/images via SMB.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>ComicShare</strong></td>
+                        <td>×</td>
+                        <td>◯</td>
+                        <td>×</td>
+                        <td>The strongest app for reading manga via SMB stream, but it lacks video and music playback features.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Nas Player Pro</strong></td>
+                        <td>◯</td>
+                        <td>◯</td>
+                        <td>◯</td>
+                        <td>Covers all videos, music, and manga with seamless SMB streaming.</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h2>2. Android & Amazon Fire Player Comparison: The Stream Rendering Hurdle</h2>
+            <p>Similar challenges exist in the Android and Fire TV environments, just like on iOS.</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>App Name</th>
+                        <th>Video Playback</th>
+                        <th>Manga/Image (SMB Stream)</th>
+                        <th>Supported OS</th>
+                        <th>Features</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>VLC / nPlayer</strong></td>
+                        <td>◯</td>
+                        <td>×</td>
+                        <td>Android</td>
+                        <td>Video playback is smooth, but manga is not supported (Infuse is not available for Android).</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Perfect Viewer, etc.</strong></td>
+                        <td>×</td>
+                        <td>△</td>
+                        <td>Android</td>
+                        <td>Manga playback is possible, but they lack SMB stream rendering support. Video and music are also not supported.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Nas Player Pro</strong></td>
+                        <td>◯</td>
+                        <td>◯</td>
+                        <td>Android / Amazon Fire</td>
+                        <td>Supports both OS platforms, achieving complete SMB stream rendering and playback of all media types.</td>
+                    </tr>
+                </tbody>
+            </table>
+            <p>On Android, manga viewers like Perfect Viewer and ComicScreen are well-known, but they fall short in stream rendering comfort compared to dedicated apps. Furthermore, <strong>in the Amazon Fire environment, Nas Player Pro is currently the only app that completely supports "SMB streaming of video, music, and manga"</strong>.</p>
+
+            <h2>3. Overall Evaluation: Why Do We Recommend "Nas Player Pro"?</h2>
+            <p>While there are many basic free apps that specialize in a single function, if you consider the "comprehensive comfort" of avoiding the hassle of switching apps and completing all your media consumption in one place, <strong>Nas Player Pro</strong> is the best choice.</p>
+            <ul>
+                <li><strong>Complete All-in-One:</strong> Comfortably play all videos, music, and manga (images) via a high-speed SMB stream.</li>
+                <li><strong>Remote Viewing from Outdoors:</strong> Just like standard players, it fully supports secure external connections and outdoor viewing using Tailscale.</li>
+                <li><strong>Multi-Platform:</strong> Provides the same seamless experience across all iOS, Android, and Amazon Fire environments.</li>
+            </ul>
+
+            <div class="btn-container">
+                <a href="https://killersaca.github.io/Privacy-Policy/NasPlayerPro.html" class="btn-download">Download Nas Player Pro (iOS / Android / Amazon Fire)</a>
+            </div>
         </div>
     </div>
+
+    <!-- 言語切り替え用スクリプト -->
+    <script>
+        function switchLang(lang) {
+            const contentJa = document.getElementById('content-ja');
+            const contentEn = document.getElementById('content-en');
+            const btnJa = document.getElementById('btn-ja');
+            const btnEn = document.getElementById('btn-en');
+
+            if (lang === 'ja') {
+                contentJa.style.display = 'block';
+                contentEn.style.display = 'none';
+                btnJa.classList.add('active');
+                btnEn.classList.remove('active');
+                // タイトルも日本語に戻す
+                document.title = "NASの動画も漫画もこれ一つ！最強メディアプレイヤー徹底比較【iOS/Android/Amazon Fire】";
+            } else if (lang === 'en') {
+                contentJa.style.display = 'none';
+                contentEn.style.display = 'block';
+                btnJa.classList.remove('active');
+                btnEn.classList.add('active');
+                // タイトルを英語にする
+                document.title = "The Ultimate NAS Media Player Comparison! [iOS/Android/Amazon Fire]";
+            }
+        }
+    </script>
 </body>
 </html>
