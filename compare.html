@@ -21,28 +21,24 @@
             box-shadow: 0 2px 8px rgba(0,0,0,0.05);
             position: relative;
         }
-        /* 言語切り替えボタンのスタイル */
+        /* 言語切り替えボタン（ドロップダウン）のスタイル */
         .lang-switch {
             text-align: right;
             margin-bottom: 20px;
         }
-        .lang-btn {
+        .lang-select {
             background-color: #f2f5f8;
             border: 1px solid #ddd;
-            padding: 8px 16px;
+            padding: 8px 12px;
             cursor: pointer;
-            font-size: 0.9rem;
+            font-size: 1rem;
             border-radius: 4px;
-            margin-left: 5px;
+            outline: none;
             transition: all 0.2s;
         }
-        .lang-btn.active {
-            background-color: #0066cc;
-            color: white;
+        .lang-select:focus {
             border-color: #0066cc;
-        }
-        .lang-btn:hover:not(.active) {
-            background-color: #e2e6ea;
+            box-shadow: 0 0 0 2px rgba(0,102,204,0.2);
         }
         
         h1 { font-size: 1.8rem; color: #111; border-bottom: 2px solid #0066cc; padding-bottom: 10px; }
@@ -73,18 +69,61 @@
         }
         .btn-download:hover { background-color: #0052a3; }
         ul { padding-left: 20px; }
+        
+        /* 各言語コンテンツの表示制御用クラス */
+        .lang-content {
+            display: none;
+        }
+        .lang-content.active {
+            display: block;
+        }
     </style>
 </head>
 <body>
     <div class="container">
-        <!-- 言語切り替えスイッチ -->
+        <!-- 言語切り替えスイッチ（35言語対応のためドロップダウンに変更） -->
         <div class="lang-switch">
-            <button class="lang-btn active" onclick="switchLang('ja')" id="btn-ja">日本語</button>
-            <button class="lang-btn" onclick="switchLang('en')" id="btn-en">English</button>
+            <select class="lang-select" id="lang-selector" onchange="switchLang(this.value)">
+                <option value="ja">ja - 言語 (日本語)</option>
+                <option value="en">en - Language (English)</option>
+                <option value="ko">ko - 언어 (한국어)</option>
+                <option value="zh">zh - 语言 (简体中文)</option>
+                <option value="zh_TW">zh_TW - 語言 (繁體中文)</option>
+                <option value="es">es - Idioma (Español)</option>
+                <option value="it">it - Lingua (Italiano)</option>
+                <option value="de">de - Sprache (Deutsch)</option>
+                <option value="pt">pt - Idioma (Português)</option>
+                <option value="fr">fr - Langue (Français)</option>
+                <option value="id">id - Bahasa (Indonesia)</option>
+                <option value="th">th - ภาษา (ไทย)</option>
+                <option value="tl">tl - Wika (Tagalog)</option>
+                <option value="hi">hi - भाषा (हिन्दी)</option>
+                <option value="ar">ar - اللغة (العربية)</option>
+                <option value="tr">tr - Dil (Türkçe)</option>
+                <option value="he">he - שפה (עברית)</option>
+                <option value="vi">vi - Ngôn ngữ (Tiếng Việt)</option>
+                <option value="nl">nl - Taal (Nederlands)</option>
+                <option value="sv">sv - Språk (Svenska)</option>
+                <option value="da">da - Sprog (Dansk)</option>
+                <option value="ms">ms - Bahasa (Melayu)</option>
+                <option value="pl">pl - Język (Polski)</option>
+                <option value="cs">cs - Jazyk (Čeština)</option>
+                <option value="no">no - Språk (Norsk)</option>
+                <option value="fi">fi - Kieli (Suomi)</option>
+                <option value="hu">hu - Nyelv (Magyar)</option>
+                <option value="bg">bg - Език (Български)</option>
+                <option value="ru">ru - Язык (Русский)</option>
+                <option value="uk">uk - Мова (Українська)</option>
+                <option value="el">el - Γλώσσα (Ελληνικά)</option>
+                <option value="ro">ro - Limbă (Română)</option>
+                <option value="ca">ca - Idioma (Català)</option>
+                <option value="hr">hr - Jezik (Hrvatski)</option>
+                <option value="sk">sk - Jazyk (Slovenčina)</option>
+            </select>
         </div>
 
         <!-- 日本語コンテンツ -->
-        <div id="content-ja">
+        <div id="content-ja" class="lang-content active">
             <h1>NASの動画も漫画もこれ一つ！最強メディアプレイヤー徹底比較【iOS/Android/Amazon Fire】</h1>
             <p>スマートフォンやテレビでNASに保存した動画や漫画を楽しむ際、「動画用」「漫画用」と別々のアプリを使い分けていませんか？本記事では、各OSごとの人気メディアプレイヤーを比較し、動画・音楽・漫画のすべてをシームレスに楽しめる最適なソリューションを解説します。</p>
 
@@ -176,8 +215,8 @@
             </div>
         </div>
 
-        <!-- 英語コンテンツ (初期状態は非表示) -->
-        <div id="content-en" style="display: none;">
+        <!-- 英語コンテンツ -->
+        <div id="content-en" class="lang-content">
             <h1>The Ultimate NAS Media Player Comparison: Video & Manga in One App! [iOS/Android/Amazon Fire]</h1>
             <p>When enjoying videos and manga saved on your NAS on a smartphone or TV, do you find yourself switching between separate apps for "videos" and "manga"? In this article, we compare popular media players across different OS environments and explain the optimal solution to seamlessly enjoy all your videos, music, and manga in one place.</p>
 
@@ -268,29 +307,65 @@
                 <a href="https://killersaca.github.io/Privacy-Policy/NasPlayerPro.html" class="btn-download">Download Nas Player Pro (iOS / Android / Amazon Fire)</a>
             </div>
         </div>
+
+        <!-- 以下の言語は翻訳コンテンツを追記するためのプレースホルダーです。ご提示のコードの構造を正確に維持し、想像での生成を避けるため枠組みのみ実装しています。 -->
+        <div id="content-ko" class="lang-content"></div>
+        <div id="content-zh" class="lang-content"></div>
+        <div id="content-zh_TW" class="lang-content"></div>
+        <div id="content-es" class="lang-content"></div>
+        <div id="content-it" class="lang-content"></div>
+        <div id="content-de" class="lang-content"></div>
+        <div id="content-pt" class="lang-content"></div>
+        <div id="content-fr" class="lang-content"></div>
+        <div id="content-id" class="lang-content"></div>
+        <div id="content-th" class="lang-content"></div>
+        <div id="content-tl" class="lang-content"></div>
+        <div id="content-hi" class="lang-content"></div>
+        <div id="content-ar" class="lang-content" dir="rtl"></div>
+        <div id="content-tr" class="lang-content"></div>
+        <div id="content-he" class="lang-content" dir="rtl"></div>
+        <div id="content-vi" class="lang-content"></div>
+        <div id="content-nl" class="lang-content"></div>
+        <div id="content-sv" class="lang-content"></div>
+        <div id="content-da" class="lang-content"></div>
+        <div id="content-ms" class="lang-content"></div>
+        <div id="content-pl" class="lang-content"></div>
+        <div id="content-cs" class="lang-content"></div>
+        <div id="content-no" class="lang-content"></div>
+        <div id="content-fi" class="lang-content"></div>
+        <div id="content-hu" class="lang-content"></div>
+        <div id="content-bg" class="lang-content"></div>
+        <div id="content-ru" class="lang-content"></div>
+        <div id="content-uk" class="lang-content"></div>
+        <div id="content-el" class="lang-content"></div>
+        <div id="content-ro" class="lang-content"></div>
+        <div id="content-ca" class="lang-content"></div>
+        <div id="content-hr" class="lang-content"></div>
+        <div id="content-sk" class="lang-content"></div>
     </div>
 
     <!-- 言語切り替え用スクリプト -->
     <script>
         function switchLang(lang) {
-            const contentJa = document.getElementById('content-ja');
-            const contentEn = document.getElementById('content-en');
-            const btnJa = document.getElementById('btn-ja');
-            const btnEn = document.getElementById('btn-en');
+            // すべてのコンテンツを非表示にする
+            const contents = document.querySelectorAll('.lang-content');
+            contents.forEach(function(content) {
+                content.classList.remove('active');
+            });
 
+            // 選択された言語のコンテンツを表示する
+            const selectedContent = document.getElementById('content-' + lang);
+            if (selectedContent) {
+                selectedContent.classList.add('active');
+            }
+
+            // htmlタグのlang属性を更新
+            document.documentElement.lang = lang;
+
+            // 言語に応じたページタイトルの変更（翻訳済みの2言語のみ設定、必要に応じて追加してください）
             if (lang === 'ja') {
-                contentJa.style.display = 'block';
-                contentEn.style.display = 'none';
-                btnJa.classList.add('active');
-                btnEn.classList.remove('active');
-                // タイトルも日本語に戻す
                 document.title = "NASの動画も漫画もこれ一つ！最強メディアプレイヤー徹底比較【iOS/Android/Amazon Fire】";
             } else if (lang === 'en') {
-                contentJa.style.display = 'none';
-                contentEn.style.display = 'block';
-                btnJa.classList.remove('active');
-                btnEn.classList.add('active');
-                // タイトルを英語にする
                 document.title = "The Ultimate NAS Media Player Comparison! [iOS/Android/Amazon Fire]";
             }
         }
